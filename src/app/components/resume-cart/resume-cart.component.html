@@ -1,0 +1,30 @@
+<div class="boxContent boxContent--cart">
+    <div class="boxContent__head">
+        Resumen de la orden
+    </div>
+    <div class="boxContent__body">
+        <resume-list [listItems]="products"></resume-list>
+        <div class="pt25 pb25 pr25">
+            <button class="btn btn--red">Editar</button>
+        </div>
+    </div>
+    <div class="boxContent__footer">
+        <div class="boxContent__subtotal">
+            <p>
+                <span class="ttU">Subtotal</span>
+                <span class="">{{resumePrice | currency}}</span>
+            </p>
+            <p>
+                <span class="ttU">Envío</span>
+                <span class="">A calcular</span>
+            </p>
+        </div>
+        <div class="boxContent__total">
+            <p>
+                <span class="ttU">Total</span>
+                <span class="">{{resumePrice | currency}}</span>
+            </p>
+            
+        </div>
+    </div>
+</div>

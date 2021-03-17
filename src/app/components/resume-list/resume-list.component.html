@@ -1,0 +1,11 @@
+<!-- LIST BOX  -->
+<div class="listBox"*ngFor="let item of listItems">
+    <div class="listBox__thumb">
+        <img [src]="item.image" alt="" class="img__contain">
+    </div>
+    <div class="listBox__description">
+        <p class="ttU">{{item.name}}</p>
+    </div>
+    <p class="listBox__price">{{item.price | currency}}</p>
+</div>
+<!-- END LIST BOX  -->

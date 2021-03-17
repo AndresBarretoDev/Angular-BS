@@ -1,0 +1,152 @@
+.homeBox {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+
+  &__content {
+    width: 100%;
+    @include flex($vertical: flex-start, $wrap:nowrap);
+    padding: 40px 25px;
+
+    @include mq(mob) {
+      flex-wrap: wrap;
+    }
+
+  }
+
+  &__left {
+    width: 60%;
+    margin-right: 30px;
+    margin-bottom: 30px;
+
+    @include mq(tab) {
+      width: 50%;
+    }
+
+    @include mq(mob) {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+
+  &__right {
+    width: 40%;
+
+    @include mq(tab) {
+      width: 50%;
+    }
+
+    @include mq(mob) {
+      width: 100%;
+    }
+  }
+}
+
+.boxContent {
+  width: 100%;
+  border: 1px solid var(--color-tertiary);
+  display: flex;
+  flex-direction: column;
+
+  &__head {
+    text-align: left;
+    width: 100%;
+    border-bottom: 2px solid var(--color-tertiary);
+    padding: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+
+    @include mq(mobS) {
+      text-align: center;
+    }
+  }
+
+  &__body {
+    width: 100%;
+    @include flex;
+    padding: 30px;
+
+    @include mq(mobS) {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    address-form {
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+    }
+  }
+
+  &--cart {
+    border: 1px solid var(--color-primary);
+
+    .boxContent {
+      &__head {
+        background: var(--color-primary);
+        border: unset;
+        text-align: center;
+      }
+
+      &__body {
+        padding: 0;
+        justify-content: flex-end;
+      }
+
+      &__subtotal,
+      &__total {
+        background: var(--color-primary);
+        padding: 15px;
+
+        p {
+          display: flex;
+          margin: 0;
+          justify-content: space-between;
+          font-weight: 700;
+        }
+      }
+
+      &__total {
+        background: var(--color-tertiary);
+        color: var(--color-white);
+      }
+    }
+  }
+}
+
+
+.listBox {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  padding: 25px 15px;
+  border-bottom: 1px solid var(--color-primary);
+
+  &__thumb {
+    height: 60px;
+    width: 80px;
+    min-width: 80px;
+    margin-right: 15px;
+
+    img {
+      height: 100%;
+      object-fit: contain;
+      width: 100%;
+    }
+  }
+
+  &__description,
+  &__description p {
+    font-size: toRem(14);
+    color: #545454;
+    margin: 0;
+    padding-right: 15px;
+  }
+
+  &__price {
+    color: var(--color-tertiary);
+    font-size: toRem(14);
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,191 @@
+<form class="form" [formGroup]="addressForm" (ngSubmit)="handleData(addressForm)">
+    <div class="form__grid">
+        <!-- FORM BOX -->
+        <div class="form__box">
+            <div class="form__icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <input type="text" 
+                class="form__input"
+                placeholder="Nombre"
+                formControlName="name">
+            <span class="error-message" *ngIf="errorControl.name.errors?.required && validName">Campo obligatorio</span>
+        </div>
+        <!-- END FORM BOX -->
+        <!-- FORM BOX -->
+        <div class="form__box">
+            <div class="form__icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <input type="text" 
+                class="form__input"
+                placeholder="Apellidos"
+                formControlName="lastName">
+            <span class="error-message" *ngIf="errorControl.lastName.errors?.required && validLastName">Campo obligatorio</span>
+
+        </div>
+        <!-- END FORM BOX -->
+        <!-- FORM BOX -->
+        <div class="form__box">
+            <div class="form__icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <input type="email" 
+                class="form__input"
+                placeholder="Correo electrónico"
+                formControlName="email">
+            <span class="error-message" 
+                *ngIf="errorControl.email.errors?.required && validEmail">Campo obligatorio</span>
+            <span class="error-message" 
+                *ngIf="errorControl.email.errors?.pattern">Ingresa un correo válido</span>
+
+        </div>
+        <!-- END FORM BOX -->
+        <!-- FORM BOX -->
+        <div class="form__box">
+            <div class="form__icon">
+                <i class="fas fa-phone-alt"></i>
+            </div>
+            <input type="tel" 
+                class="form__input"
+                placeholder="Número de teléfono"
+                formControlName="phone"
+                maxlength="10">
+            <span class="error-message" *ngIf="validPhone && errorControl.phone.errors?.required">Campo
+             obligatorio
+            </span>
+            <span class="error-message" *ngIf="errorControl.phone.errors?.pattern">
+            Ingresa un número de teléfono válido
+            </span>
+            <span class="error-message" *ngIf="errorControl.phone.errors?.minlength">
+            Ingresa un número de teléfono válido
+            </span>
+        </div>
+        <!-- END FORM BOX -->
+        <!-- FORM BOX -->
+        <div class="form__box">
+            <div class="form__icon">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <select class="form__select"
+            formControlName="postal_code"
+            (change)="handlePostalCode($event)">
+                <option value="" selected disabled>Código postal</option>
+                <option value="11000">11000</option>
+                <option value="89000">89000</option>
+            </select>
+            <span class="error-message" *ngIf="validPostal && errorControl.postal_code.errors?.required">Campo
+                obligatorio
+            </span>
+        </div>
+        <!-- END FORM BOX -->
+        <!-- FORM BOX -->
+        <div class="form__box">
+            <div class="form__icon">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <input type="text" 
+                class="form__input"
+                placeholder="Colonia" 
+                formControlName="colony"
+                *ngIf="toggleField">
+
+            <select class="form__select"
+            *ngIf="!toggleField" 
+            formControlName="colony">
+                <option value="colonia" selected disabled>Colonia</option>
+                <option *ngFor="let colony of coloniesGroup" [value]="colony">{{colony}}</option>
+            </select>
+
+            <span class="error-message" 
+                *ngIf="validColony && errorControl.colony.errors?.required">
+                Campo obligatorio
+            </span>
+        </div>
+        <!-- END FORM BOX -->
+        <!-- FORM BOX -->
+        <div class="form__box">
+            <div class="form__icon">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <input type="text" 
+                class="form__input"
+                placeholder="Estado/Región"
+                formControlName="state">
+            <span class="error-message" 
+                *ngIf="validRegion && errorControl.state.errors?.required">
+                Campo obligatorio
+            </span>
+        </div>
+        <!-- END FORM BOX -->
+        <!-- FORM BOX -->
+        <div class="form__box">
+            <div class="form__icon">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <input type="text" 
+                class="form__input"
+                placeholder="Ciudad"
+                formControlName="city">
+            <span class="error-message" 
+                *ngIf="validCity && errorControl.city.errors?.required">
+                Campo obligatorio
+            </span>
+        </div>
+        <!-- END FORM BOX -->
+        <!-- FORM BOX -->
+        <div class="form__box">
+            <div class="form__icon">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <input type="text" 
+                class="form__input"
+                placeholder="Delegación o municipio"
+                formControlName="town">
+            <span class="error-message" 
+                *ngIf="validtown && errorControl.town.errors?.required">
+                Campo obligatorio
+            </span>
+        </div>
+        <!-- END FORM BOX -->
+        <!-- FORM BOX -->
+        <div class="form__box">
+            <div class="form__icon">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <input type="text" 
+                class="form__input"
+                placeholder="Calle"
+                formControlName="street">
+            <span class="error-message" 
+                *ngIf="validStreet && errorControl.street.errors?.required">
+                Campo obligatorio
+            </span>
+        </div>
+        <!-- END FORM BOX -->
+
+    </div>
+
+    <!-- ACTION BUTTONS  -->
+    <div class="form__actions mb15">
+        <button class="btn btn--black mr10">
+            Libreta de direcciones
+        </button>
+        <button class="btn btn--black" type="submit">
+            Guardar
+        </button>
+    </div>
+    <!-- END ACTION BUTTONS  -->
+    <!-- FORM BOX -->
+    <label class="form__label" for="fact">
+        <input type="checkbox" name="fact" id="fact" 
+        class="form__check"
+        formControlName="use_address">
+        Utilizar como dirección de facturación
+        <!-- <span class="error-message" 
+        *ngIf="validUseAddress && errorControl.use_address.errors?.required">
+        Campo obligatorio
+    </span> -->
+    </label>
+    <!-- END FORM BOX -->
+</form>
